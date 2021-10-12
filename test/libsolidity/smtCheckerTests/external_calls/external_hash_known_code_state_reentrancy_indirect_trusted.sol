@@ -1,5 +1,8 @@
 contract Other {
 	C c;
+	constructor(C _c) {
+		c = _c;
+	}
 	function h() public {
 		c.setOwner(address(0));
 	}
@@ -9,6 +12,10 @@ contract State {
 	uint x;
 	Other o;
 	C c;
+	constructor(C _c) {
+		c = _c;
+		o = new Other(_c);
+	}
 	function f() public returns (uint) {
 		o.h();
 		return c.g();
@@ -22,6 +29,7 @@ contract C {
 
 	constructor() {
 		owner = msg.sender;
+		s = new State(this);
 	}
 
 	function setOwner(address _owner) public {
@@ -31,8 +39,8 @@ contract C {
 	function f() public {
 		address prevOwner = owner;
 		uint z = s.f();
-		assert(z == y);
-		assert(prevOwner == owner);
+		assert(z == y); // should hold
+		assert(prevOwner == owner); // should not hold because of reentrancy
 	}
 
 	function g() public view returns (uint) {
@@ -40,9 +48,7 @@ contract C {
 	}
 }
 // ====
-// SMTEngine: all
-// SMTIgnoreCex: yes
-// SMTIgnoreOS: macos
+// SMTContract: C
+// SMTEngine: chc
+// SMTExtCalls: trusted
 // ----
-// Warning 6328: (419-433): CHC: Assertion violation happens here.
-// Warning 6328: (437-463): CHC: Assertion violation happens here.
