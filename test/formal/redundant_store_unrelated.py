@@ -43,7 +43,7 @@ solver.add(diff <= 2**(n_bits-1))
 # Overlap:
 # x is a potential point where the memory operations
 # overlap.
-# Note that we do not use wrapping arithmetics
+# Note that we do not use wrapping arithmetic
 # here, because it is not done in the EVM either.
 # For example calldatacopy(2**256 - 2, 0, 10)
 # (copy 10 bytes from calldata position zero to memory
