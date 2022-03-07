@@ -250,8 +250,7 @@ Expression Pattern::toExpression(shared_ptr<DebugData const> const& _debugData) 
 		for (auto const& arg: m_arguments)
 			arguments.emplace_back(arg.toExpression(_debugData));
 
-		string name = instructionInfo(m_instruction).name;
-		util::toLower(name);
+		string name = util::toLower(instructionInfo(m_instruction).name);
 
 		return FunctionCall{_debugData,
 			Identifier{_debugData, YulString{name}},

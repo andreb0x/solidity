@@ -200,9 +200,7 @@ string AssemblyItem::toAssemblyText(Assembly const& _assembly) const
 	case Operation:
 	{
 		assertThrow(isValidInstruction(instruction()), AssemblyException, "Invalid instruction.");
-		string name = instructionInfo(instruction()).name;
-		util::toLower(name);
-		text = name;
+		text = util::toLower(instructionInfo(instruction()).name);
 		break;
 	}
 	case Push:

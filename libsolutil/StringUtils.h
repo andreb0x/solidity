@@ -217,11 +217,13 @@ inline char toUpper(char _c)
 
 /// Converts parameter _s to its lowercase equivalent. It uses the classic "C" locale semantics.
 /// @param _s value to be converted
-inline void toLower(std::string& _s)
+/// @return the converted value
+inline std::string toLower(std::string _s)
 {
 	std::transform(_s.begin(), _s.end(), _s.begin(), [](char _c) {
 		return toLower(_c);
 	});
+	return _s;
 }
 
 /// Checks whether _c is a decimal digit character. It uses the classic "C" locale semantics.

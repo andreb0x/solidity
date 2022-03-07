@@ -121,8 +121,7 @@ set<YulString> createReservedIdentifiers(langutil::EVMVersion _evmVersion)
 	set<YulString> reserved;
 	for (auto const& instr: evmasm::c_instructions)
 	{
-		string name = instr.first;
-		toLower(name);
+		string name = toLower(instr.first);
 		if (!baseFeeException(instr.second))
 			reserved.emplace(name);
 	}
@@ -142,8 +141,7 @@ map<YulString, BuiltinFunctionForEVM> createBuiltins(langutil::EVMVersion _evmVe
 	map<YulString, BuiltinFunctionForEVM> builtins;
 	for (auto const& instr: evmasm::c_instructions)
 	{
-		string name = instr.first;
-		toLower(name);
+		string name = toLower(instr.first);
 		auto const opcode = instr.second;
 
 		if (
