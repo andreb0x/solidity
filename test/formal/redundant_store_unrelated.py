@@ -1,5 +1,5 @@
 import sys
-from z3 import Solver, Int, IntVal, unsat
+from z3 import Solver, Int, unsat
 
 """
 Tests that the conditions inside RedundantStoreEliminator::knownUnrelated
