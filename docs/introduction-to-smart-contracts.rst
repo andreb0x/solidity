@@ -396,9 +396,10 @@ returns that code when executed.
 Gas
 ===
 
-Upon creation, each transaction is charged with a certain amount of **gas**,
-whose purpose is to limit the amount of work that is needed to execute
-the transaction and to pay for this execution at the same time. While the EVM executes the
+Upon creation, each transaction is charged with a certain amount of **gas**. Imposing 
+a cost on transactions serves to prevent bad actors from spamming the network, and provides
+an incentive for validators (i.e. miners, stakers) to put in the work that is required to 
+validate the transaction. Each computational step consumes some gas. While the EVM executes the
 transaction, the gas is gradually depleted according to specific rules.
 
 The **gas price** is a value set by the creator of the transaction, who
